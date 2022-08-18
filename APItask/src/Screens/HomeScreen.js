@@ -20,7 +20,6 @@ export default function App() {
 //     );
 //     setisModalVisible(false);
 //   };
-
   const submit = () => {
     dispatch(
       addUser({
@@ -35,31 +34,25 @@ export default function App() {
     setisModalVisible(true);
   };
   const editModal = item => {
-    {item.name;}
-    {item.age;}
-    {item.hobbies;}
+    {item.name}
+    {item.age}
+    {item.hobbies}
     setisModalVisible(true);
   }; 
-
   const onPressUser = item => {
     setName(item.name);
     setHobbies(item.hobbies);
     setAge(item.age)
    }
-
   const renderItem = ({item}) => {
     return (
         <TouchableOpacity onPress={() => onPressUser(item)}>
-        <View>
-          <Text>{item.name}</Text>
-          <Text>{item.hobbies}</Text>
-          <Text>{item.age}</Text>
+        <View >
+          <Text style={styles.renderItem}>{item.name}{item.hobbies}{item.age}</Text>
         </View>
         </TouchableOpacity>
     );
   };
-
-  
   const Modalclose = ()=>{
     setisModalVisible(false)
     setData([...data,{name: name},{hobbies: hobbies},{age: age}])
@@ -72,14 +65,10 @@ export default function App() {
   return (
     <View style={styles.container}>
 
- 
-  
   <Modal animationType="fade" visible={isModalVisible}>
-
-    <TextInput  style={styles.textinput} defaultValue={name} onChangeText={Name    => setName(Name)}       placeholder={'Name'} value={name}    />
+    <TextInput  style={styles.textinput} defaultValue={name} onChangeText={Name    => setName(Name)}          placeholder={'Name'} value={name}    />
     <TextInput style={styles.textinput}  defaultValue={hobbies} onChangeText={Hobbies => setHobbies(Hobbies)} placeholder={'Hobbies'} value={hobbies} />
-    <TextInput  style={styles.textinput} defaultValue={age} onChangeText={Age     => setAge(Age)}         placeholder={'Age'} value={age} />
-
+    <TextInput  style={styles.textinput} defaultValue={age} onChangeText={Age     => setAge(Age)}             placeholder={'Age'} value={age} />
     <Button
         title={'Add Detail'}
         onPress={Modalclose}
@@ -89,11 +78,13 @@ export default function App() {
         onPress={Modalclose}
       />
   </Modal>
+
+
     <Button
-        title={'Add'}
-        onPress={Modalopen}
+       title={'Add'}
+       onPress={Modalopen}
     />
-  
+
     <FlatList data={data} renderItem={renderItem} />
     <View style={styles.bottomButton}>
       <View style={styles.floorbutton}><Button title="Edit" onPress={editModal}/></View>
@@ -113,6 +104,7 @@ const styles = StyleSheet.create({
         backgroundColor: 'white',
         padding: 10,
         marginTop: 10,
+        fontSize:20
       },
   bottomButton:{
     flexDirection:'row',
@@ -121,6 +113,10 @@ const styles = StyleSheet.create({
   },
   floorbutton:{
     padding:50
+  },
+  renderItem:{
+      
+      fontSize:20
   }
   
 });
